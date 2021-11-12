@@ -1,0 +1,61 @@
+BONUS FLAGS
+
+'#'         --> Value converted to alternate form; No effect on c, p, d, i, s, % and u conversions. 
+				For x an Xconversions, a non-zero result has the string '0x' or '0X' prepended to it and the 
+				number is converted to hexadecimal;
+
+' ' (space) --> For d and i (bother are signed), a blank should be left before a positive number is
+				produced. If negative nothing happens. Several spaces can be given without changing the
+				result;
+
+'+'			--> A sign must be placed before a number produced by a signed conversion. A '+' overrides
+				a blank space if both are used. Several '+' can be used without changing the result.
+				Works for positives in hexa, not negatives;
+
+COMBINATIONS OF '-0.' AND MINIMUM FIELD WIDTH (MFW)
+
+MFW         --> Decimal digit string specifying a MFW (min is 1 according to arosad??). If converted value
+				is smaller than MFW, fills with ' ' to the LEFT. If non-existent or smaller than the number
+				converted, the field is expanded to contain the full number, without truncation;
+
+'-'			--> Converted value stays on the left and, if needed, the value is padded with ' ' on the RIGHT.
+				If combined with '0', it overrides it; Can be used without MFW and with '.' without a value
+				but does nothing. When combined with '.', it has to be '-.'. Using '-.', '-.0' or '0' all have
+				the same effect as discribed in '0'.
+
+'0'			--> Zero padding. Adds '0' instead of ' ' to the left if MFW is bigger than the converted value.
+				If a precision ('.') is given with a numeric conversion (d, i, u, x and X), this flag is
+				ignored. Does not work with %c or %s:
+
+'.'			--> Allows to give a precision: with d, i, u, x an X, it gives a minimum number of digits to be
+				printed, and with s it gives the maximum number of characters to be printed from a string. 
+				Syntax is a '.' followed by a digit string. if the digit string is omitted, the precision
+				is taken as zero. Does not work with %c;
+
+POSSIBLE CONVERSIONS
+
+'%c'		--> Prints a single character, converting the int given to an unsigned char;
+
+'%s'		--> The char * argument is expected to be a pointer to an array of char (string) and characters
+				ar written up to (without including) a '\0' character. If a precision is given, no '\0'
+				needs to be present IF the precision is smaller or equal to the size of the string. IF no
+				precision is given OR it is bigger than the size of the string, a '\0' needs to be present.
+
+'%p'		--> The void * pointer argument is printed in hexadecimal (as if by '%#x');
+
+'%d'		--> The int (or appropriate variant) argument is converted to signed decimal. Also converts
+				hexadecimal to decimal;
+
+'%i'		--> Same as '%d' in printf, different in scanf. Also converts hexadecimal to decimal;
+
+'%u'		--> The unsigned int (or appropriate variant) argument is converted to unsigned decimal. 
+				Also converts unsigned hexadecimal to unsigned decimal;
+
+'%x' or '%X'--> The int (or appropriate variant) argument is converted to unsigned hexadecimal (with abcdef
+				if x and ABCDEF if X);
+
+NOTE: IF a precision ('.') is given for diuxx and it is bigger thant the number converted, it is padded with
+	  zeros on the left. If no precision is given BUT a MFW exists, the number is padded with ' ' on the
+	   left;
+
+'%%'		--> prints a '%'. Works with all flags.
