@@ -6,7 +6,7 @@
 /*   By: daalmeid <daalmeid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 14:00:04 by daalmeid          #+#    #+#             */
-/*   Updated: 2021/11/19 16:17:11 by daalmeid         ###   ########.fr       */
+/*   Updated: 2021/11/19 17:16:02 by daalmeid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,18 @@ static char	*prep_flags(char *ret, char fl)
 
 static char	*flag_conflict(char fl[])
 {
-	if (ft_strchr(fl, '+') && ft_strchr(fl, ' '))
+	if ((ft_strchr(fl, '+') && ft_strchr(fl, ' '))
+		|| (ft_strchr(fl, '+') && ft_strchr(fl, '#'))
+		|| (ft_strchr(fl, '#') && ft_strchr(fl, ' ')))
+		return (NULL);
+	else if (ft_strchr(fl, '#') && (fl[ft_strlen(fl - 1)] != 'x'
+		|| fl[ft_strlen(fl - 1)] != 'X'))
+		return (NULL);
+	else if (ft_strchr(fl, ' ') && (fl[ft_strlen(fl - 1)] != 'i'
+		|| fl[ft_strlen(fl - 1)] != 'd' || fl[ft_strlen(fl - 1)] != 'D'))
+		return (NULL);
+	else if (ft_strchr(fl, '+') && (fl[ft_strlen(fl - 1)] != 'i'
+		|| fl[ft_strlen(fl - 1)] != 'd' || fl[ft_strlen(fl - 1)] != 'D'))
 		return (NULL);
 	else if (ft_strchr(fl, '-') && ft_strchr(fl, '0'))
 		return (NULL);
