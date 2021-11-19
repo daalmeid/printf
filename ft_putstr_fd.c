@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_printf.c                                 :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daalmeid <daalmeid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 16:18:43 by daalmeid          #+#    #+#             */
-/*   Updated: 2021/11/19 14:39:42 by daalmeid         ###   ########.fr       */
+/*   Created: 2021/10/21 15:34:36 by daalmeid          #+#    #+#             */
+/*   Updated: 2021/11/19 16:25:07 by daalmeid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "ft_printf.h"
 
-int	ft_putstr_printf(char *s)
+void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
 
 	if (s == 0)
-	{	
-		ft_putstr_fd("(null)", 1);
-		return (6);
-	}
+		return ;
 	i = 0;
 	while (s[i] != '\0')
 	{
-		ft_putchar_fd(s[i], 1);
+		ft_putchar_fd(s[i], fd);
 		i++;
 	}
-	return (i);
 }
+/*
+int	main(void)
+{
+	char	*s;
+	int		fd;
+
+	fd = 1;
+	s = "Dario Barroca";
+	ft_putstr_fd(s, fd);
+	return (0);
+}
+*/

@@ -6,7 +6,7 @@
 /*   By: daalmeid <daalmeid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 14:00:04 by daalmeid          #+#    #+#             */
-/*   Updated: 2021/11/18 17:00:13 by daalmeid         ###   ########.fr       */
+/*   Updated: 2021/11/19 16:17:11 by daalmeid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,39 +70,27 @@ static char	*check_flags(char *ptr, char ret[])
 	return (ret);
 }
 
-static int	conv_select(char c, va_list *args, char *fl)
+static int	conv_select(char c, va_list *args)
 {
 	int	ret;
 
 	ret = 0;
-	if (c == 'c' || c == 'C')
-	{	
+	if ((c == 'c' || c == 'C') && !ret++)
 		ft_putchar_fd(va_arg(*args, int), 1);
-		ret = 1;
-	}
 	else if (c == 's')
 		ret = ft_putstr_printf(va_arg(*args, char *));
 	else if (c == 'd' || c == 'D' || c == 'i')
-	{	
-		ft_check_fl(args, fl);
 		ret = ft_putnbr_printf(va_arg(*args, int));
-	}
 	else if (c == 'u' || c == 'U')
-		ret = ft_putnbr_un(va_arg(*args, unsigned int), fl);
+		ret = ft_putnbr_un(va_arg(*args, unsigned int));
 	else if (c == 'x')
-		ret = ft_putnbr_base(va_arg(*args, int), "0123456789abcdef", fl);
+		ret = ft_putnbr_base(va_arg(*args, int), "0123456789abcdef");
 	else if (c == 'X')
-		ret = ft_putnbr_base(va_arg(*args, int), "0123456789ABCDEF", fl);
-	else if (c == '%')
-	{	
+		ret = ft_putnbr_base(va_arg(*args, int), "0123456789ABCDEF");
+	else if (c == '%' && !ret++)
 		ft_putchar_fd('%', 1);
-		ret = 1;
-	}
 	else if (c == 'p')
-	{	
-		ft_putstr_fd("0x", 1);
-		ret = ft_putnbr_ptr(va_arg(*args, unsigned long long), "0123456789abcdef");
-	}
+		ret = ft_putnbr_ptr(va_arg(*args, long long), "0123456789abcdef");
 	return (ret);
 }
 
@@ -113,40 +101,35 @@ int	ft_printf(const char *s, ...)
 	int		i;
 	int		j;
 	int		k;
-	char	*ptr;
-	char	*fl;
 	char	ret[30];
 
 	va_start(args, s);
 	i = 0;
-	k = 0;
-	while(s[i] != '\0')
+	j = 0;
+	while (s[i] != '\0')
 	{
 		if (s[i] != '%')
 		{	
-			ft_putchar_fd(s[i], 1);
-			k++;
+			ft_putchar_fd(s[i++], 1);
+			j++;
 		}
-		if (s[i] == '%')
+		else if (s[i++] == '%')
 		{
-			i++;
-			j = i;
+			k = i;
 			while (!(ft_isalpha(s[i])) && s[i] != '\0' && s[i] != '%')
 				i++;
-			ptr = ft_substr(s, j, i + 1 - j);
+			ptr = ft_substr(s, k, i + 1 - k);
 			if (!ptr)
 				return (0);
 			ft_bzero(ret, 30);
 			fl = check_flags(ptr, ret);
 			free (ptr);
 			ptr_lst = &args;
-			j = conv_select(fl[ft_strlen(fl) - 1], ptr_lst, fl);
-			k += j;
+			j += conv_select(s[i++], ptr_lst);
 		}
-		i++;
 	}
 	va_end(args);
-	return (k);
+	return (j);
 }
 
 int	main(void)

@@ -6,7 +6,7 @@
 /*   By: daalmeid <daalmeid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 12:08:29 by daalmeid          #+#    #+#             */
-/*   Updated: 2021/11/18 16:58:37 by daalmeid         ###   ########.fr       */
+/*   Updated: 2021/11/19 16:08:07 by daalmeid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
-int		ft_putnbr_base(int nbr, char *base, char *fl);
+int		ft_putnbr_base(int nbr, char *base);
 int		ft_rule_out(char *base);
-int		ft_putnbr_un(unsigned int nbr, char *fl);
-int		ft_putnbr_ptr(unsigned long long nbr, char *fl);
+int		ft_putnbr_un(unsigned int nbr);
+int		ft_putnbr_ptr(unsigned long nbr, char *base);
 void	ft_check_fl(va_list *arg, char *fl);
 void	ft_bzero(void *s, size_t n);
 int		ft_isalpha(int c);

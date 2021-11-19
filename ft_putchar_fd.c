@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_printf.c                                 :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daalmeid <daalmeid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 16:18:43 by daalmeid          #+#    #+#             */
-/*   Updated: 2021/11/19 14:39:42 by daalmeid         ###   ########.fr       */
+/*   Created: 2021/10/21 15:23:11 by daalmeid          #+#    #+#             */
+/*   Updated: 2021/10/21 15:33:16 by daalmeid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
 
-int	ft_putstr_printf(char *s)
+void	ft_putchar_fd(char c, int fd)
 {
-	int	i;
-
-	if (s == 0)
-	{	
-		ft_putstr_fd("(null)", 1);
-		return (6);
-	}
-	i = 0;
-	while (s[i] != '\0')
-	{
-		ft_putchar_fd(s[i], 1);
-		i++;
-	}
-	return (i);
+	write(fd, &c, 1);
 }
+/*
+int	main(void)
+{
+	char	c;
+	int		fd;
+
+	c = 'a';
+	fd = 1;
+	ft_putchar_fd(c, fd);
+	return (0);
+}
+*/
