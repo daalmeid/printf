@@ -6,34 +6,32 @@
 #    By: daalmeid <daalmeid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 18:12:17 by daalmeid          #+#    #+#              #
-#    Updated: 2021/11/24 11:18:03 by daalmeid         ###   ########.fr        #
+#    Updated: 2021/11/24 11:14:44 by daalmeid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= libftprintf.a
+NAME	= libft.a
 
-SRCS	= ft_put_nbr_str_ptr.c ft_putnbr_un.c ft_putnbr_base.c ft_printf.c\
-	
+SRCS	= ft_isalnum.c ft_itoa.c ft_memset.c ft_split.c ft_strlcat.c\
+		ft_strnstr.c ft_toupper.c ft_isalpha.c ft_memchr.c ft_putchar_fd.c\
+		ft_strchr.c ft_strlcpy.c ft_strrchr.c ft_atoi.c ft_isascii.c\
+		ft_memcmp.c ft_putendl_fd.c ft_strdup.c ft_strlen.c ft_strtrim.c\
+		ft_bzero.c ft_isdigit.c ft_memcpy.c ft_putnbr_fd.c ft_striteri.c\
+		ft_strmapi.c ft_substr.c ft_calloc.c ft_isprint.c ft_memmove.c\
+		ft_putstr_fd.c ft_strjoin.c ft_strncmp.c ft_tolower.c
 
-SRCS_BONUS	= ft_put_nbr_str_ptr.c ft_putnbr_un.c ft_putnbr_base.c\
-		ft_printf_bonus.c ft_isalpha.c ft_putchar_fd.c ft_putnbr_fd.c\
-		ft_putstr_fd.c ft_strchr.c ft_strlen.c ft_atoi.c ft_bzero.c\
-		ft_isdigit.c ft_substr.c
+SRCS_BONUS	= ft_lstadd_back.c ft_lstsize.c ft_lstadd_front.c ft_lstclear.c\
+			ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c
 
 OBJS	= *.o
 
 RM = rm -f
 
-LIBFT = libft.a
-
-$(NAME): $(LIBFT) $(OBJS)
-	mv libft.a $(NAME) && ar rc $(NAME) $(OBJS) && make clean
+$(NAME): $(OBJS)
+	ar rc $(NAME) $(OBJS) && make clean
 
 $(OBJS):
 	gcc -Wall -Wextra -Werror -c $(SRCS)
-
-$(LIBFT):
-	cd libft/ && make && mv libft.a ../
 	
 all:	$(NAME)
 
@@ -46,5 +44,5 @@ fclean:	clean
 re:		fclean all
 
 bonus: clean
-	gcc -Wall -Wextra -Werror -c $(SRCS_BONUS)
+	gcc -Wall -Wextra -Werror -c $(SRCS) $(SRCS_BONUS)
 	ar rc $(NAME) $(OBJS)

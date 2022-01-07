@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daalmeid <daalmeid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/21 15:34:36 by daalmeid          #+#    #+#             */
-/*   Updated: 2021/11/19 16:25:07 by daalmeid         ###   ########.fr       */
+/*   Created: 2021/10/18 15:19:43 by daalmeid          #+#    #+#             */
+/*   Updated: 2021/10/21 17:02:07 by daalmeid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "ft_printf.h"
-
-void	ft_putstr_fd(char *s, int fd)
+/*#include <stdio.h>
+#include <ctype.h>
+*/
+int	ft_isascii(int c)
 {
-	int	i;
-
-	if (s == 0)
-		return ;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		ft_putchar_fd(s[i], fd);
-		i++;
-	}
+	return (c >= 0 && c <= 127);
 }
-/*
-int	main(void)
-{
-	char	*s;
-	int		fd;
 
-	fd = 1;
-	s = "Dario Barroca";
-	ft_putstr_fd(s, fd);
+/*int	main(void)
+{
+	unsigned char	c = 'i';
+
+	printf("%d\n", ft_isascii(c));
+	printf("%d\n", isascii(c));
 	return (0);
 }
 */

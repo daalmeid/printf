@@ -6,12 +6,12 @@
 /*   By: daalmeid <daalmeid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:44:45 by daalmeid          #+#    #+#             */
-/*   Updated: 2021/11/19 16:25:30 by daalmeid         ###   ########.fr       */
+/*   Updated: 2021/10/29 12:10:23 by daalmeid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "ft_printf.h"
+#include "libft.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {

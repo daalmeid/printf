@@ -1,43 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_printf.c                                 :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daalmeid <daalmeid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 17:23:53 by daalmeid          #+#    #+#             */
-/*   Updated: 2021/11/18 17:29:03 by daalmeid         ###   ########.fr       */
+/*   Created: 2021/10/19 12:02:25 by daalmeid          #+#    #+#             */
+/*   Updated: 2021/10/19 12:19:53 by daalmeid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "ft_printf.h"
-
-int	ft_putnbr_printf(int nbr)
+/*#include <stdio.h>
+#include <ctype.h>
+*/
+int	ft_toupper(int c)
 {
-	int	i;
-	int	j;
-
-	i = nbr;
-	j = 1;
-	while (i > 9 || i < -9)
-	{
-		i /= 10;
-		j++;
-	}
-	if (nbr < 0)
-		j++;
-	ft_putnbr_fd(nbr, 1);
-	return (j);
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	else
+		return (c);
 }
-
-/*int	main(void)
+/*
+int	main(void)
 {
-	int	n;
-	int	fd;
+	unsigned char	c;
 
-	n = 21474836;
-	fd = 1;
-	ft_putnbr_fd(n, fd);
+	c = 't';
+	printf("%c -> %c\n", c, ft_toupper(c));
+	c = 't';
+	printf("%c -> %c\n", c, toupper(c));
 	return (0);
-}*/
+}
+*/
